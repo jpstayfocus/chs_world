@@ -1,1 +1,1 @@
-simple htmp page for my IG page
+simple html for my IG page
