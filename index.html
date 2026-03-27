@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,354 +5,219 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CHS World — Caribbean Heritage & Success</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap');
-
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap');
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
   :root {
-    --teal: #0a5c5c;
-    --teal-dark: #033a3a;
-    --teal-light: #0d8080;
-    --gold: #D4AF37;
-    --gold-light: #FFE566;
-    --cream: #fdf8f0;
-    --text: #1a1a1a;
+    --teal: #0a5c5c; --teal-dark: #033a3a; --teal-light: #0d8080;
+    --gold: #D4AF37; --gold-light: #FFE566; --cream: #fdf8f0; --text: #1a1a1a;
   }
-
   html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Inter', sans-serif;
-    background: var(--cream);
-    color: var(--text);
-    overflow-x: hidden;
-  }
+  body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
 
   /* NAV */
   nav {
-    position: fixed; top: 0; width: 100%; z-index: 100;
-    background: rgba(3,58,58,0.95);
-    backdrop-filter: blur(10px);
-    padding: 16px 40px;
-    display: flex; justify-content: space-between; align-items: center;
+    position: fixed; top: 0; width: 100%; z-index: 200;
+    background: rgba(3,58,58,0.97); backdrop-filter: blur(12px);
+    padding: 16px 40px; display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid rgba(212,175,55,0.15);
   }
-  .nav-logo {
-    font-family: 'Playfair Display', serif;
-    color: var(--gold);
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: 1px;
-  }
+  .nav-logo { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 22px; font-weight: 700; letter-spacing: 1px; text-decoration: none; }
   .nav-links { display: flex; gap: 30px; list-style: none; }
-  .nav-links a {
-    color: rgba(255,255,255,0.8);
-    text-decoration: none;
-    font-size: 13px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    transition: color 0.3s;
-  }
+  .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; transition: color 0.3s; }
   .nav-links a:hover { color: var(--gold); }
+  .nav-cta { background: var(--gold); color: var(--teal-dark) !important; padding: 8px 18px; border-radius: 2px; font-weight: 600 !important; }
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--teal-dark) !important; }
 
   /* HERO */
   .hero {
-    min-height: 100vh;
-    background: linear-gradient(160deg, var(--teal-dark) 0%, var(--teal) 60%, #0a7a6a 100%);
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    text-align: center;
-    padding: 100px 20px 60px;
-    position: relative;
-    overflow: hidden;
+    min-height: 100vh; position: relative; overflow: hidden;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 120px 20px 200px;
   }
-
-  /* Animated waves */
-  .waves {
-    position: absolute; bottom: 0; left: 0; width: 100%; height: 180px;
+  .hero-video {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; z-index: 0;
   }
-  .wave {
-    position: absolute; bottom: 0; left: 0;
-    width: 200%; height: 100%;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 180'%3E%3Cpath fill='%23fdf8f0' fill-opacity='1' d='M0,80 C360,160 1080,0 1440,80 L1440,180 L0,180 Z'/%3E%3C/svg%3E") repeat-x;
-    background-size: 50% 100%;
+  .hero-overlay {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(160deg, rgba(3,40,40,0.82) 0%, rgba(10,92,92,0.7) 60%, rgba(3,58,58,0.85) 100%);
   }
-  .wave1 { animation: wave 8s linear infinite; opacity: 0.3; bottom: 10px; }
-  .wave2 { animation: wave 12s linear infinite reverse; opacity: 0.2; bottom: 5px; }
-  .wave3 { animation: wave 6s linear infinite; opacity: 1; bottom: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 180'%3E%3Cpath fill='%23fdf8f0' d='M0,100 C360,40 1080,160 1440,100 L1440,180 L0,180 Z'/%3E%3C/svg%3E"); }
-  @keyframes wave { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-  /* Sun */
+  .hero-content { position: relative; z-index: 2; }
   .sun {
-    width: 120px; height: 120px;
+    width: 100px; height: 100px; margin: 0 auto 36px;
     background: radial-gradient(circle at 35% 35%, var(--gold-light), var(--gold), #B8860B);
-    border-radius: 50%;
-    box-shadow: 0 0 60px rgba(212,175,55,0.5), 0 0 120px rgba(212,175,55,0.2);
-    margin-bottom: 40px;
-    position: relative;
-    animation: pulse 4s ease-in-out infinite;
+    border-radius: 50%; box-shadow: 0 0 60px rgba(212,175,55,0.5), 0 0 120px rgba(212,175,55,0.2);
+    position: relative; animation: pulse 4s ease-in-out infinite;
   }
   @keyframes pulse {
-    0%, 100% { box-shadow: 0 0 60px rgba(212,175,55,0.5), 0 0 120px rgba(212,175,55,0.2); }
-    50% { box-shadow: 0 0 80px rgba(212,175,55,0.7), 0 0 160px rgba(212,175,55,0.3); }
+    0%,100% { box-shadow: 0 0 60px rgba(212,175,55,0.5), 0 0 120px rgba(212,175,55,0.2); }
+    50% { box-shadow: 0 0 90px rgba(212,175,55,0.7), 0 0 180px rgba(212,175,55,0.3); }
   }
   .sun::before {
-    content: '';
-    position: absolute; inset: -25px;
-    border-radius: 50%;
-    background: repeating-conic-gradient(rgba(212,175,55,0.15) 0deg 15deg, transparent 15deg 30deg);
+    content: ''; position: absolute; inset: -22px; border-radius: 50%;
+    background: repeating-conic-gradient(rgba(212,175,55,0.18) 0deg 15deg, transparent 15deg 30deg);
     animation: spin 20s linear infinite;
   }
   @keyframes spin { to { transform: rotate(360deg); } }
-
-  .hero-tag {
-    color: var(--gold);
-    font-size: 11px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-    opacity: 0.9;
-  }
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(42px, 7vw, 82px);
-    font-weight: 900;
-    color: #fff;
-    line-height: 1.1;
-    margin-bottom: 10px;
-  }
+  .hero-tag { color: var(--gold); font-size: 11px; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 14px; opacity: 0.9; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(46px, 7vw, 88px); font-weight: 900; color: #fff; line-height: 1.05; margin-bottom: 12px; }
   .hero h1 span { color: var(--gold); }
-  .hero-sub {
-    font-size: clamp(16px, 2.5vw, 22px);
-    color: rgba(255,255,255,0.75);
-    font-weight: 300;
-    margin-bottom: 14px;
-    font-style: italic;
-    font-family: 'Playfair Display', serif;
-  }
-  .hero-desc {
-    color: rgba(255,255,255,0.6);
-    font-size: 14px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 50px;
-  }
-  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
-  .btn-primary {
-    background: var(--gold);
-    color: var(--teal-dark);
-    padding: 14px 32px;
-    border-radius: 3px;
-    font-weight: 600;
-    font-size: 13px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.3s;
-  }
+  .hero-sub { font-size: clamp(17px, 2.5vw, 23px); color: rgba(255,255,255,0.7); font-weight: 300; font-style: italic; font-family: 'Playfair Display', serif; margin-bottom: 12px; }
+  .hero-desc { color: rgba(255,255,255,0.5); font-size: 12px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 48px; }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+  .btn-primary { background: var(--gold); color: var(--teal-dark); padding: 15px 34px; border-radius: 2px; font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; transition: all 0.3s; }
   .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
-  .btn-secondary {
-    border: 1px solid rgba(255,255,255,0.4);
-    color: #fff;
-    padding: 14px 32px;
-    border-radius: 3px;
-    font-size: 13px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.3s;
-  }
+  .btn-secondary { border: 1px solid rgba(255,255,255,0.35); color: #fff; padding: 15px 34px; border-radius: 2px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; transition: all 0.3s; }
   .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
 
+  /* WAVES */
+  .waves { position: absolute; bottom: 0; left: 0; width: 100%; height: 160px; z-index: 2; }
+  .wave { position: absolute; bottom: 0; left: 0; width: 200%; height: 100%; background-size: 50% 100%; }
+  .wave1 { animation: wave 9s linear infinite; opacity: 0.25; bottom: 12px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 160'%3E%3Cpath fill='%23fdf8f0' d='M0,80 C360,160 1080,0 1440,80 L1440,160 L0,160 Z'/%3E%3C/svg%3E"); }
+  .wave2 { animation: wave 13s linear infinite reverse; opacity: 0.15; bottom: 6px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 160'%3E%3Cpath fill='%23fdf8f0' d='M0,60 C480,140 960,20 1440,60 L1440,160 L0,160 Z'/%3E%3C/svg%3E"); }
+  .wave3 { animation: wave 7s linear infinite; opacity: 1; bottom: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 160'%3E%3Cpath fill='%23fdf8f0' d='M0,100 C360,40 1080,160 1440,100 L1440,160 L0,160 Z'/%3E%3C/svg%3E"); }
+  @keyframes wave { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* STATS */
+  .stats { background: var(--teal-dark); padding: 60px 40px; }
+  .stats-grid { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; text-align: center; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: clamp(36px, 5vw, 56px); font-weight: 900; color: var(--gold); line-height: 1; }
+  .stat-label { color: rgba(255,255,255,0.55); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-top: 8px; }
+
   /* MISSION */
-  .mission {
-    padding: 100px 40px;
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .section-tag {
-    color: var(--teal);
-    font-size: 11px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-    font-weight: 600;
-  }
-  .mission h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(32px, 4vw, 50px);
-    font-weight: 700;
-    color: var(--teal-dark);
-    margin-bottom: 24px;
-    line-height: 1.2;
-  }
+  .mission { padding: 100px 40px; max-width: 860px; margin: 0 auto; text-align: center; }
+  .section-tag { color: var(--teal); font-size: 11px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 14px; font-weight: 600; }
+  .gold-divider { width: 50px; height: 3px; background: var(--gold); margin: 0 auto 28px; border-radius: 2px; }
+  .mission h2 { font-family: 'Playfair Display', serif; font-size: clamp(30px, 4vw, 48px); font-weight: 700; color: var(--teal-dark); margin-bottom: 22px; line-height: 1.2; }
   .mission h2 span { color: var(--gold); }
-  .mission p {
-    font-size: 17px;
-    line-height: 1.9;
-    color: #444;
-    max-width: 680px;
-    margin: 0 auto;
-  }
+  .mission p { font-size: 17px; line-height: 1.9; color: #555; max-width: 660px; margin: 0 auto; }
 
   /* PILLARS */
-  .pillars {
-    background: var(--teal-dark);
-    padding: 100px 40px;
-  }
+  .pillars { background: var(--teal-dark); padding: 100px 40px; }
   .pillars-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
-  .pillars h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 3.5vw, 44px);
-    color: #fff;
-    margin-bottom: 60px;
-  }
+  .pillars h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.5vw, 44px); color: #fff; margin-bottom: 56px; }
   .pillars h2 span { color: var(--gold); }
-  .pillars-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 30px;
-  }
-  .pillar {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(212,175,55,0.2);
-    border-radius: 8px;
-    padding: 40px 28px;
+  .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+  .pillar { background: rgba(255,255,255,0.04); border: 1px solid rgba(212,175,55,0.18); border-radius: 6px; padding: 40px 26px; transition: all 0.35s; cursor: default; }
+  .pillar:hover { background: rgba(212,175,55,0.07); border-color: rgba(212,175,55,0.5); transform: translateY(-6px); }
+  .pillar-icon { font-size: 36px; margin-bottom: 16px; }
+  .pillar h3 { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 20px; margin-bottom: 10px; }
+  .pillar p { color: rgba(255,255,255,0.55); font-size: 14px; line-height: 1.75; }
+
+  /* QUOTES */
+  .quotes { padding: 100px 40px; background: var(--cream); }
+  .quotes-inner { max-width: 780px; margin: 0 auto; text-align: center; }
+  .quotes h2 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 3vw, 38px); color: var(--teal-dark); margin-bottom: 50px; }
+  .quotes h2 span { color: var(--gold); }
+  .quote-carousel { position: relative; min-height: 180px; }
+  .quote-slide { display: none; animation: fadeIn 0.6s ease; }
+  .quote-slide.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .quote-text { font-family: 'Playfair Display', serif; font-size: clamp(18px, 2.5vw, 26px); font-style: italic; color: var(--teal-dark); line-height: 1.6; margin-bottom: 20px; }
+  .quote-text::before { content: '\201C'; color: var(--gold); font-size: 1.4em; }
+  .quote-text::after { content: '\201D'; color: var(--gold); font-size: 1.4em; }
+  .quote-author { color: var(--gold); font-weight: 600; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
+  .quote-dots { display: flex; gap: 8px; justify-content: center; margin-top: 30px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: #ccc; cursor: pointer; transition: background 0.3s; border: none; }
+  .dot.active { background: var(--gold); }
+
+  /* STORIES */
+  .stories { background: #f5efe3; padding: 100px 40px; }
+  .stories-inner { max-width: 1100px; margin: 0 auto; }
+  .stories-header { text-align: center; margin-bottom: 56px; }
+  .stories-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.5vw, 44px); color: var(--teal-dark); }
+  .stories-header h2 span { color: var(--gold); }
+  .stories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
+  .story-card { background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.07); transition: all 0.35s; }
+  .story-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,0.13); }
+  .story-img { height: 180px; display: flex; align-items: center; justify-content: center; font-size: 56px; }
+  .story-body { padding: 24px; }
+  .story-tag { color: var(--teal); font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; }
+  .story-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--teal-dark); margin-bottom: 10px; line-height: 1.3; }
+  .story-desc { color: #777; font-size: 13.5px; line-height: 1.7; margin-bottom: 16px; }
+  .story-link { color: var(--teal); font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid var(--teal); padding-bottom: 2px; transition: color 0.3s; }
+  .story-link:hover { color: var(--gold); border-color: var(--gold); }
+
+  /* MAP */
+  .map-section { background: var(--teal-dark); padding: 100px 40px; text-align: center; }
+  .map-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 3vw, 40px); color: #fff; margin-bottom: 10px; }
+  .map-section h2 span { color: var(--gold); }
+  .map-section > p { color: rgba(255,255,255,0.5); margin-bottom: 50px; font-size: 14px; letter-spacing: 1px; }
+  .islands-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+  .island-chip {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.2);
+    border-radius: 4px; padding: 14px 10px; text-align: center; cursor: pointer;
     transition: all 0.3s;
   }
-  .pillar:hover {
-    background: rgba(212,175,55,0.08);
-    border-color: rgba(212,175,55,0.5);
-    transform: translateY(-4px);
-  }
-  .pillar-icon { font-size: 38px; margin-bottom: 18px; }
-  .pillar h3 {
-    font-family: 'Playfair Display', serif;
-    color: var(--gold);
-    font-size: 20px;
-    margin-bottom: 12px;
-  }
-  .pillar p { color: rgba(255,255,255,0.6); font-size: 14px; line-height: 1.7; }
+  .island-chip:hover, .island-chip.active { background: rgba(212,175,55,0.12); border-color: var(--gold); transform: scale(1.04); }
+  .island-flag { font-size: 26px; margin-bottom: 6px; }
+  .island-name { color: rgba(255,255,255,0.8); font-size: 12px; font-weight: 500; }
+  .island-detail { max-width: 600px; margin: 40px auto 0; background: rgba(255,255,255,0.06); border: 1px solid rgba(212,175,55,0.25); border-radius: 8px; padding: 28px; display: none; }
+  .island-detail.show { display: block; animation: fadeIn 0.4s ease; }
+  .island-detail h3 { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 22px; margin-bottom: 10px; }
+  .island-detail p { color: rgba(255,255,255,0.65); font-size: 14px; line-height: 1.75; }
 
   /* COMMUNITY */
-  .community {
-    padding: 100px 40px;
-    max-width: 700px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .community h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 3.5vw, 44px);
-    color: var(--teal-dark);
-    margin-bottom: 16px;
-  }
+  .community { padding: 100px 40px; max-width: 680px; margin: 0 auto; text-align: center; }
+  .community h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.5vw, 44px); color: var(--teal-dark); margin-bottom: 14px; }
   .community h2 span { color: var(--gold); }
-  .community p { color: #555; font-size: 16px; line-height: 1.8; margin-bottom: 40px; }
-  .newsletter-form { display: flex; gap: 0; max-width: 480px; margin: 0 auto; }
-  .newsletter-form input {
-    flex: 1;
-    padding: 16px 20px;
-    border: 2px solid #ddd;
-    border-right: none;
-    border-radius: 3px 0 0 3px;
-    font-size: 14px;
-    outline: none;
-    font-family: 'Inter', sans-serif;
-    transition: border-color 0.3s;
-  }
+  .community > p { color: #666; font-size: 16px; line-height: 1.8; margin-bottom: 36px; }
+  .newsletter-form { display: flex; max-width: 460px; margin: 0 auto; }
+  .newsletter-form input { flex: 1; padding: 16px 20px; border: 2px solid #ddd; border-right: none; border-radius: 3px 0 0 3px; font-size: 14px; outline: none; font-family: 'Inter', sans-serif; transition: border-color 0.3s; background: #fff; }
   .newsletter-form input:focus { border-color: var(--teal); }
-  .newsletter-form button {
-    background: var(--teal);
-    color: #fff;
-    padding: 16px 24px;
-    border: none;
-    border-radius: 0 3px 3px 0;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background 0.3s;
-    font-family: 'Inter', sans-serif;
-  }
+  .newsletter-form button { background: var(--teal); color: #fff; padding: 16px 24px; border: none; border-radius: 0 3px 3px 0; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: background 0.3s; font-family: 'Inter', sans-serif; white-space: nowrap; }
   .newsletter-form button:hover { background: var(--teal-light); }
-  .success-msg {
-    display: none;
-    color: var(--teal);
-    font-weight: 600;
-    font-size: 15px;
-    margin-top: 16px;
-  }
+  .success-msg { display: none; color: var(--teal); font-weight: 600; font-size: 15px; margin-top: 16px; }
 
   /* INSTAGRAM */
-  .instagram {
-    background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
-    padding: 80px 40px;
-    text-align: center;
-  }
-  .instagram h2 {
-    font-family: 'Playfair Display', serif;
-    color: #fff;
-    font-size: clamp(24px, 3vw, 38px);
-    margin-bottom: 10px;
-  }
-  .instagram p { color: rgba(255,255,255,0.6); margin-bottom: 30px; font-size: 15px; }
-  .ig-btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: var(--gold);
-    color: var(--teal-dark);
-    padding: 14px 32px;
-    border-radius: 3px;
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 1px;
-    text-decoration: none;
-    transition: all 0.3s;
-  }
+  .instagram { background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%); padding: 80px 40px; text-align: center; }
+  .instagram h2 { font-family: 'Playfair Display', serif; color: #fff; font-size: clamp(24px, 3vw, 38px); margin-bottom: 10px; }
+  .instagram p { color: rgba(255,255,255,0.55); margin-bottom: 30px; font-size: 15px; }
+  .ig-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: var(--teal-dark); padding: 15px 34px; border-radius: 3px; font-weight: 700; font-size: 13px; letter-spacing: 1.5px; text-decoration: none; transition: all 0.3s; }
   .ig-btn:hover { background: var(--gold-light); transform: translateY(-2px); }
 
   /* FOOTER */
-  footer {
-    background: #0a0a0a;
-    color: rgba(255,255,255,0.4);
-    text-align: center;
-    padding: 40px 20px;
-    font-size: 13px;
-  }
+  footer { background: #080808; color: rgba(255,255,255,0.35); text-align: center; padding: 48px 20px; font-size: 13px; line-height: 2; }
   footer span { color: var(--gold); }
+  .footer-links { display: flex; gap: 24px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+  .footer-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--gold); }
 
-  /* DIVIDER */
-  .gold-divider {
-    width: 60px; height: 3px;
-    background: var(--gold);
-    margin: 0 auto 32px;
-    border-radius: 2px;
-  }
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.75s ease, transform 0.75s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
-  <div class="nav-logo">CHS · WORLD</div>
+  <a class="nav-logo" href="#">CHS · WORLD</a>
   <ul class="nav-links">
     <li><a href="#mission">Mission</a></li>
     <li><a href="#pillars">Pillars</a></li>
-    <li><a href="#community">Community</a></li>
-    <li><a href="#instagram">Instagram</a></li>
+    <li><a href="#stories">Stories</a></li>
+    <li><a href="#islands">Islands</a></li>
+    <li><a href="#community" class="nav-cta">Join</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="sun"></div>
-  <p class="hero-tag">Welcome to CHS World</p>
-  <h1>Caribbean <span>Roots.</span><br>Global Reach.</h1>
-  <p class="hero-sub">Where Heritage Meets the Future</p>
-  <p class="hero-desc">Culture · History · Identity · Community</p>
-  <div class="hero-btns">
-    <a href="#mission" class="btn-primary">Our Mission</a>
-    <a href="#community" class="btn-secondary">Join the Community</a>
+  <video class="hero-video" autoplay muted loop playsinline poster="">
+    <source src="https://videos.pexels.com/video-files/1739011/1739011-uhd_2560_1440_25fps.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="sun"></div>
+    <p class="hero-tag">Welcome to CHS World</p>
+    <h1>Caribbean <span>Roots.</span><br>Global Reach.</h1>
+    <p class="hero-sub">Where Heritage Meets the Future</p>
+    <p class="hero-desc">Culture · History · Identity · Community</p>
+    <div class="hero-btns">
+      <a href="#mission" class="btn-primary">Our Mission</a>
+      <a href="#community" class="btn-secondary">Join the Community</a>
+    </div>
   </div>
   <div class="waves">
     <div class="wave wave1"></div>
@@ -362,102 +226,265 @@
   </div>
 </section>
 
+<!-- STATS -->
+<section class="stats">
+  <div class="stats-grid">
+    <div class="reveal">
+      <div class="stat-num" data-target="30" data-suffix="+">0</div>
+      <div class="stat-label">Caribbean Nations</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-num" data-target="40" data-suffix="M+">0</div>
+      <div class="stat-label">Diaspora Worldwide</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-num" data-target="500" data-suffix="+">0</div>
+      <div class="stat-label">Years of History</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-num" data-target="700" data-suffix="+">0</div>
+      <div class="stat-label">Islands & Cays</div>
+    </div>
+  </div>
+</section>
+
 <!-- MISSION -->
 <section class="mission" id="mission">
-  <p class="section-tag">Who We Are</p>
-  <div class="gold-divider"></div>
-  <h2>Celebrating <span>Caribbean Heritage</span> & Success</h2>
-  <p>CHS World is a platform dedicated to honoring the richness of Caribbean culture, preserving its history, and amplifying the voices of a global diaspora. We exist for the dreamers, the builders, and the next generation — wherever in the world they may be.</p>
+  <p class="section-tag reveal">Who We Are</p>
+  <div class="gold-divider reveal"></div>
+  <h2 class="reveal">Celebrating <span>Caribbean Heritage</span> & Success</h2>
+  <p class="reveal">CHS World is a platform dedicated to honoring the richness of Caribbean culture, preserving its history, and amplifying the voices of a global diaspora. We exist for the dreamers, the builders, and the next generation — wherever in the world they may be.</p>
 </section>
 
 <!-- PILLARS -->
 <section class="pillars" id="pillars">
   <div class="pillars-inner">
-    <p class="section-tag" style="color:rgba(212,175,55,0.7)">What We Stand For</p>
-    <h2>Our <span>Four Pillars</span></h2>
+    <p class="section-tag reveal" style="color:rgba(212,175,55,0.7)">What We Stand For</p>
+    <h2 class="reveal">Our <span>Four Pillars</span></h2>
     <div class="pillars-grid">
-      <div class="pillar">
-        <div class="pillar-icon">🌴</div>
-        <h3>Culture</h3>
-        <p>Celebrating the art, music, food, and traditions that make the Caribbean truly unique.</p>
+      <div class="pillar reveal"><div class="pillar-icon">🌴</div><h3>Culture</h3><p>Celebrating the art, music, food, and traditions that make the Caribbean truly unique.</p></div>
+      <div class="pillar reveal"><div class="pillar-icon">📜</div><h3>History</h3><p>Preserving and sharing the stories, struggles, and triumphs that shaped our identity.</p></div>
+      <div class="pillar reveal"><div class="pillar-icon">🌊</div><h3>Identity</h3><p>Empowering the diaspora to stay connected to their roots no matter where life takes them.</p></div>
+      <div class="pillar reveal"><div class="pillar-icon">🤝</div><h3>Community</h3><p>Building bridges between Caribbean people across the world — students, professionals, and dreamers.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTES -->
+<section class="quotes" id="quotes">
+  <div class="quotes-inner">
+    <p class="section-tag reveal">Voices of the Caribbean</p>
+    <div class="gold-divider reveal"></div>
+    <h2 class="reveal">Words That <span>Shaped a People</span></h2>
+    <div class="quote-carousel reveal">
+      <div class="quote-slide active">
+        <p class="quote-text">Emancipate yourselves from mental slavery, none but ourselves can free our minds.</p>
+        <p class="quote-author">Marcus Garvey — Jamaica</p>
       </div>
-      <div class="pillar">
-        <div class="pillar-icon">📜</div>
-        <h3>History</h3>
-        <p>Preserving and sharing the stories, struggles, and triumphs that shaped our identity.</p>
+      <div class="quote-slide">
+        <p class="quote-text">My island is its own witness, its coral a coarser net of the world's rot.</p>
+        <p class="quote-author">Derek Walcott — Saint Lucia, Nobel Laureate</p>
       </div>
-      <div class="pillar">
-        <div class="pillar-icon">🌊</div>
-        <h3>Identity</h3>
-        <p>Empowering the diaspora to stay connected to their roots no matter where life takes them.</p>
+      <div class="quote-slide">
+        <p class="quote-text">A small place, a small people. But our humanity is not small.</p>
+        <p class="quote-author">Jamaica Kincaid — Antigua</p>
       </div>
-      <div class="pillar">
-        <div class="pillar-icon">🤝</div>
-        <h3>Community</h3>
-        <p>Building bridges between Caribbean people across the world — students, professionals, and dreamers.</p>
+      <div class="quote-slide">
+        <p class="quote-text">We declared our independence and we must be prepared to defend it.</p>
+        <p class="quote-author">Toussaint Louverture — Haiti</p>
+      </div>
+    </div>
+    <div class="quote-dots">
+      <button class="dot active" onclick="goToQuote(0)"></button>
+      <button class="dot" onclick="goToQuote(1)"></button>
+      <button class="dot" onclick="goToQuote(2)"></button>
+      <button class="dot" onclick="goToQuote(3)"></button>
+    </div>
+  </div>
+</section>
+
+<!-- STORIES -->
+<section class="stories" id="stories">
+  <div class="stories-inner">
+    <div class="stories-header reveal">
+      <p class="section-tag">From Our World</p>
+      <div class="gold-divider"></div>
+      <h2>Stories Worth <span>Telling</span></h2>
+    </div>
+    <div class="stories-grid">
+      <div class="story-card reveal">
+        <div class="story-img" style="background:linear-gradient(135deg,#0a5c5c,#0d8080)">🎭</div>
+        <div class="story-body">
+          <p class="story-tag">Culture</p>
+          <h3 class="story-title">The History of Carnival: More Than a Celebration</h3>
+          <p class="story-desc">From its roots in African traditions and colonial resistance to the global spectacle it is today — Carnival is the Caribbean's most powerful cultural export.</p>
+          <a href="https://www.instagram.com/chs.world" target="_blank" class="story-link">Read More →</a>
+        </div>
+      </div>
+      <div class="story-card reveal">
+        <div class="story-img" style="background:linear-gradient(135deg,#033a3a,#0a5c5c)">✊🏾</div>
+        <div class="story-body">
+          <p class="story-tag">History</p>
+          <h3 class="story-title">Caribbean Figures Who Changed the World</h3>
+          <p class="story-desc">Marcus Garvey, Toussaint Louverture, C.L.R. James — a look at the Caribbean minds and movements that reshaped history on a global scale.</p>
+          <a href="https://www.instagram.com/chs.world" target="_blank" class="story-link">Read More →</a>
+        </div>
+      </div>
+      <div class="story-card reveal">
+        <div class="story-img" style="background:linear-gradient(135deg,#0d8080,#1aaa8a)">🌍</div>
+        <div class="story-body">
+          <p class="story-tag">Diaspora</p>
+          <h3 class="story-title">What the Diaspora Carries</h3>
+          <p class="story-desc">Language, recipes, music, faith — the invisible suitcase every Caribbean person carries when they leave home and how it shapes who they become.</p>
+          <a href="https://www.instagram.com/chs.world" target="_blank" class="story-link">Read More →</a>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ISLANDS MAP -->
+<section class="map-section" id="islands">
+  <p class="section-tag reveal" style="color:rgba(212,175,55,0.7)">Our World</p>
+  <h2 class="reveal">Explore the <span>Caribbean</span></h2>
+  <p class="reveal">Click an island to learn more</p>
+  <div class="islands-grid reveal" id="islandsGrid"></div>
+  <div class="island-detail" id="islandDetail">
+    <h3 id="detailName"></h3>
+    <p id="detailText"></p>
+  </div>
+</section>
+
 <!-- COMMUNITY -->
 <section class="community" id="community">
-  <p class="section-tag">Stay Connected</p>
-  <div class="gold-divider"></div>
-  <h2>Join the <span>CHS World</span> Community</h2>
-  <p>Be the first to receive stories, cultural spotlights, and updates from across the Caribbean world. No spam — just heritage.</p>
-  <div class="newsletter-form">
+  <p class="section-tag reveal">Stay Connected</p>
+  <div class="gold-divider reveal"></div>
+  <h2 class="reveal">Join the <span>CHS World</span> Community</h2>
+  <p class="reveal">Be the first to receive stories, cultural spotlights, and updates from across the Caribbean world. No spam — just heritage.</p>
+  <div class="newsletter-form reveal">
     <input type="email" id="emailInput" placeholder="your@email.com" />
-    <button onclick="handleSignup()">Join</button>
+    <button onclick="handleSignup()">Join Now</button>
   </div>
-  <p class="success-msg" id="successMsg">🌴 Welcome to the community!</p>
+  <p class="success-msg" id="successMsg">🌴 Welcome to the CHS World community!</p>
 </section>
 
 <!-- INSTAGRAM -->
 <section class="instagram" id="instagram">
-  <h2>Follow Us on Instagram</h2>
-  <p>Daily culture, history & heritage from across the Caribbean world.</p>
-  <a href="https://www.instagram.com/chs.world" target="_blank" class="ig-btn">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-    </svg>
+  <h2 class="reveal">Follow Us on Instagram</h2>
+  <p class="reveal">Daily culture, history & heritage — straight from the Caribbean world.</p>
+  <a href="https://www.instagram.com/chs.world" target="_blank" class="ig-btn reveal">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
     @chs.world
   </a>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2026 <span>CHS World</span> · Caribbean Heritage & Success · <span>chs.world</span></p>
-  <p style="margin-top:8px">Built for the diaspora. For the dreamers. For the next generation.</p>
+  <div class="footer-links">
+    <a href="#mission">Mission</a>
+    <a href="#pillars">Pillars</a>
+    <a href="#stories">Stories</a>
+    <a href="#islands">Islands</a>
+    <a href="#community">Community</a>
+    <a href="https://www.instagram.com/chs.world" target="_blank">Instagram</a>
+  </div>
+  <p>© 2026 <span>CHS World</span> · Caribbean Heritage & Success · <span>chsworld.info</span></p>
+  <p style="margin-top:6px">Built for the diaspora. For the dreamers. For the next generation.</p>
 </footer>
 
 <script>
-  function handleSignup() {
-    const email = document.getElementById('emailInput').value;
-    if (!email || !email.includes('@')) {
-      document.getElementById('emailInput').style.borderColor = '#c0392b';
-      return;
-    }
-    document.querySelector('.newsletter-form').style.display = 'none';
-    document.getElementById('successMsg').style.display = 'block';
-  }
+// ISLANDS DATA
+const islands = [
+  { name: "Haiti 🇭🇹", flag: "🇭🇹", fact: "Haiti became the first Black republic and the first Caribbean nation to gain independence in 1804, inspiring freedom movements worldwide." },
+  { name: "Jamaica 🇯🇲", flag: "🇯🇲", fact: "Home of reggae, Marcus Garvey, and Usain Bolt — Jamaica punches far above its weight on the world stage." },
+  { name: "Trinidad 🇹🇹", flag: "🇹🇹", fact: "Trinidad & Tobago gave the world Carnival in its modern form, steelpan music, and is the birthplace of calypso." },
+  { name: "Barbados 🇧🇧", flag: "🇧🇧", fact: "One of the most prosperous Caribbean nations, Barbados became a republic in 2021 and is celebrated for its rum and cricket." },
+  { name: "Cuba 🇨🇺", flag: "🇨🇺", fact: "Cuba is the largest Caribbean island, famous for its revolution, music, cigars, and vibrant Afro-Caribbean culture." },
+  { name: "Martinique 🇲🇶", flag: "🇲🇶", fact: "A French overseas territory and birthplace of Aimé Césaire, the poet and philosopher who founded the Négritude movement." },
+  { name: "Guadeloupe 🇬🇵", flag: "🇬🇵", fact: "An archipelago in the Lesser Antilles known for its stunning natural beauty, Creole culture, and vibrant music scene." },
+  { name: "St. Lucia 🇱🇨", flag: "🇱🇨", fact: "St. Lucia has produced more Nobel Laureates per capita than any nation — including poet Derek Walcott and economist Sir Arthur Lewis." },
+  { name: "Bahamas 🇧🇸", flag: "🇧🇸", fact: "The Bahamas was the site of Columbus's first landing in the Americas in 1492, home to over 700 islands and cays." },
+  { name: "Puerto Rico 🇵🇷", flag: "🇵🇷", fact: "A US territory with a fierce cultural identity — Puerto Rico is the birthplace of salsa music and countless global icons." },
+  { name: "Dominican Rep. 🇩🇴", flag: "🇩🇴", fact: "Home to the first permanent European settlement in the Americas, the Dominican Republic shares the island of Hispaniola with Haiti." },
+  { name: "Belize 🇧🇿", flag: "🇧🇿", fact: "The only English-speaking country in Central America, Belize is home to ancient Maya ruins and the world's second-largest barrier reef." },
+];
 
-  // Smooth reveal on scroll
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.style.opacity = '1';
-        e.target.style.transform = 'translateY(0)';
+const grid = document.getElementById('islandsGrid');
+const detail = document.getElementById('islandDetail');
+const detailName = document.getElementById('detailName');
+const detailText = document.getElementById('detailText');
+let activeChip = null;
+
+islands.forEach((isl, i) => {
+  const chip = document.createElement('div');
+  chip.className = 'island-chip';
+  chip.innerHTML = `<div class="island-flag">${isl.flag}</div><div class="island-name">${isl.name.split(' ')[0]}</div>`;
+  chip.onclick = () => {
+    if (activeChip) activeChip.classList.remove('active');
+    chip.classList.add('active');
+    activeChip = chip;
+    detailName.textContent = isl.name;
+    detailText.textContent = isl.fact;
+    detail.classList.add('show');
+  };
+  grid.appendChild(chip);
+});
+
+// QUOTES
+let currentQuote = 0;
+const slides = document.querySelectorAll('.quote-slide');
+const dots = document.querySelectorAll('.dot');
+
+function goToQuote(n) {
+  slides[currentQuote].classList.remove('active');
+  dots[currentQuote].classList.remove('active');
+  currentQuote = n;
+  slides[currentQuote].classList.add('active');
+  dots[currentQuote].classList.add('active');
+}
+setInterval(() => goToQuote((currentQuote + 1) % slides.length), 5000);
+
+// STATS COUNTER
+function animateCount(el) {
+  const target = +el.dataset.target;
+  const suffix = el.dataset.suffix || '';
+  const dur = 1800;
+  const step = target / (dur / 16);
+  let cur = 0;
+  const timer = setInterval(() => {
+    cur = Math.min(cur + step, target);
+    el.textContent = Math.floor(cur) + suffix;
+    if (cur >= target) clearInterval(timer);
+  }, 16);
+}
+
+// REVEAL ON SCROLL
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      const num = e.target.querySelector('[data-target]') || (e.target.dataset.target ? e.target : null);
+      if (e.target.querySelector('[data-target]')) {
+        e.target.querySelectorAll('[data-target]').forEach(animateCount);
       }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.pillar, .mission, .community').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
-    observer.observe(el);
+      observer.unobserve(e.target);
+    }
   });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// NEWSLETTER
+function handleSignup() {
+  const input = document.getElementById('emailInput');
+  if (!input.value || !input.value.includes('@')) {
+    input.style.borderColor = '#c0392b';
+    input.focus();
+    return;
+  }
+  document.querySelector('.newsletter-form').style.display = 'none';
+  document.getElementById('successMsg').style.display = 'block';
+}
 </script>
 </body>
 </html>
